@@ -22,7 +22,7 @@ class FormModal extends Component {
     return (
       <>
         <Modal
-          title="Basic Modal"
+          title="Edit Todo"
           visible={this.props.isModalVisible}
           onCancel={this.props.handleCancel}
           footer={null}

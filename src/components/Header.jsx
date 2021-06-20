@@ -40,7 +40,7 @@ class Header extends Component {
         </Button>
 
         <Modal
-          title="Add Todo"
+          title="Add New Todo"
           visible={this.state.isModalVisible}
           onCancel={this.handleCancel}
           footer={null}
