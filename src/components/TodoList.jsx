@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { List } from 'antd';
+import { List, Popconfirm } from 'antd';
 import { DeleteFilled, CheckCircleFilled, EditFilled } from '@ant-design/icons';
 import FormModal from './FormModal';
 
@@ -78,11 +78,17 @@ class TodoList extends Component {
               item={item}
               handelUpdate={handelUpdate}
             />
-
-            <DeleteFilled
-              style={{ fontSize: '125%', color: 'red' }}
-              onClick={() => this.handleDelete(index)}
-            />
+            <Popconfirm
+              title={`Are you sure delete ${item1.title} task ?`}
+              onConfirm={() => this.handleDelete(index)}
+              okText="Yes"
+              cancelText="No"
+              placement="bottom"
+            >
+              <DeleteFilled
+                style={{ fontSize: '125%', color: 'red' }}
+              />
+            </Popconfirm>
           </List.Item>
         )}
       />
