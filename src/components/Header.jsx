@@ -1,32 +1,33 @@
 import React, { Component } from 'react';
-import { Modal, Button, Form, Input } from 'antd';
+import {
+  Modal, Button, Form, Input,
+} from 'antd';
 
 class Header extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      todoArr: [],
       isModalVisible: false,
     };
-
+    const { handleForm } = this.props;
     this.reference = React.createRef();
+    this.showModal = () => {
+      this.setState({ isModalVisible: true });
+    };
+
+    this.handleCancel = () => {
+      this.setState({ isModalVisible: false });
+    };
+
+    this.onFinish = (values) => {
+      handleForm(values);
+      this.reference.current.resetFields();
+      this.setState({ isModalVisible: false });
+    };
   }
 
-  showModal = () => {
-    this.setState({ isModalVisible: true });
-  };
-
-  handleCancel = () => {
-    this.setState({ isModalVisible: false });
-  };
-
-  onFinish = (values) => {
-    this.props.handleForm(values);
-    this.reference.current.resetFields();
-    this.setState({ isModalVisible: false });
-  };
-
   render() {
+    const { isModalVisible } = this.state;
     return (
       <div
         style={{
@@ -41,7 +42,7 @@ class Header extends Component {
 
         <Modal
           title="Add New Todo"
-          visible={this.state.isModalVisible}
+          visible={isModalVisible}
           onCancel={this.handleCancel}
           footer={null}
         >
