@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { List } from 'antd';
 import { DeleteFilled, CheckCircleFilled, EditFilled } from '@ant-design/icons';
-
 import FormModal from './FormModal';
 
 class TodoList extends Component {
@@ -12,13 +11,13 @@ class TodoList extends Component {
       isModalVisible: false,
     };
 
-    const { handleDeleteSetstate, handelUpdate } = this.props;
-
     this.handleDelete = (index) => {
+      const { handleDeleteSetstate } = this.props;
       handleDeleteSetstate(index);
     };
 
     this.handleComplete = (item) => {
+      const { handelUpdate } = this.props;
       const newItem = {
         ...item,
         isChecked: !item.isChecked,

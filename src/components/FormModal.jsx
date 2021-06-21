@@ -6,16 +6,18 @@ import {
 class FormModal extends Component {
   constructor(props) {
     super(props);
-    const {
-      handelUpdate, handleCancel, isModalVisible, item,
-    } = this.props;
+
     this.onFinish = (values) => {
+      const {
+        handelUpdate, handleCancel,
+      } = this.props;
       handelUpdate(values);
       handleCancel();
     };
     this.ref = React.createRef();
 
     this.componentDidUpdate = () => {
+      const { isModalVisible, item } = this.props;
       if (isModalVisible && item && item.id) {
         this.ref.current.setFieldsValue({
           ...item,

@@ -9,8 +9,8 @@ class App extends Component {
     this.state = {
       todos: [],
     };
-    const { todos } = this.state;
     this.handleForm = (values) => {
+      const { todos } = this.state;
       this.setState({
         todos: [
           {
@@ -22,7 +22,9 @@ class App extends Component {
         ],
       });
     };
+
     this.handelUpdate = (item) => {
+      const { todos } = this.state;
       const lastResult = [...todos].map((obj) => {
         if (obj.id === item.id) {
           return item;
@@ -33,13 +35,14 @@ class App extends Component {
     };
 
     this.handleDeleteSetstate = (index) => {
-      this.setState({ todos: todos.splice(index, 1) });
+      const { todos } = this.state;
+      todos.splice(index, 1);
+      this.setState({ todos });
     };
   }
 
   render() {
     const { todos } = this.state;
-    console.log(todos);
     return (
       <div style={{ margin: '5px 100px 0' }}>
         <Header handleForm={this.handleForm} />

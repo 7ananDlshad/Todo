@@ -9,7 +9,6 @@ class Header extends Component {
     this.state = {
       isModalVisible: false,
     };
-    const { handleForm } = this.props;
     this.reference = React.createRef();
     this.showModal = () => {
       this.setState({ isModalVisible: true });
@@ -20,6 +19,7 @@ class Header extends Component {
     };
 
     this.onFinish = (values) => {
+      const { handleForm } = this.props;
       handleForm(values);
       this.reference.current.resetFields();
       this.setState({ isModalVisible: false });
