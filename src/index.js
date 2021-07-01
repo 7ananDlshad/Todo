@@ -1,12 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import Store from './store';
 
 ReactDOM.render(
-  // eslint-disable-next-line react/jsx-filename-extension
-  <App />,
-  document.getElementById('root'),
+  <Provider store={Store}>
+    <App />
+  </Provider>,
+  document.getElementById('root')
 );
 
 // If you want to start measuring performance in your app, pass a function
