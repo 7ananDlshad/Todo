@@ -7,7 +7,9 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      todos: [],
+      todos: localStorage.getItem('todos')
+        ? JSON.parse(localStorage.getItem('todos'))
+        : [],
     };
     this.handleForm = (values) => {
       const { todos } = this.state;
@@ -21,6 +23,16 @@ class App extends Component {
           ...todos,
         ],
       });
+    };
+
+    this.componentDidMount = () => {
+      const { todos } = this.state;
+      localStorage.setItem('todos', JSON.stringify(todos));
+    };
+
+    this.componentDidUpdate = () => {
+      const { todos } = this.state;
+      localStorage.setItem('todos', JSON.stringify(todos));
     };
 
     this.handelUpdate = (item) => {
