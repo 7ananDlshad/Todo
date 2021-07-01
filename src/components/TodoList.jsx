@@ -52,10 +52,10 @@ class TodoList extends Component {
             />
             <CheckCircleFilled
               style={
-                  item1.isChecked
-                    ? { fontSize: '125%', color: 'green' }
-                    : { fontSize: '125%', color: 'gray' }
-                }
+                item1.isChecked
+                  ? { fontSize: '125%', color: 'green' }
+                  : { fontSize: '125%', color: 'gray' }
+              }
               onClick={() => {
                 this.handleComplete(item1);
               }}
@@ -85,9 +85,7 @@ class TodoList extends Component {
               cancelText="No"
               placement="bottom"
             >
-              <DeleteFilled
-                style={{ fontSize: '125%', color: 'red' }}
-              />
+              <DeleteFilled style={{ fontSize: '125%', color: 'red' }} />
             </Popconfirm>
           </List.Item>
         )}

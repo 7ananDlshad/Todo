@@ -1,4 +1,7 @@
-export const TODOS_LIST_REQUEST = 'TODOS_LIST_REQUEST';
-export const TODOS_LIST_SUCCESS = 'TODOS_LIST_SUCCESS';
-export const TODOS_LIST_FAIL = 'TODOS_LIST_FAIL';
-export const TODOS_LIST_RESET = 'TODOS_LIST_RESET';
+export const TODO_LIST = 'TODO_LIST';
+export const ADD_TODO = 'ADD_TODO';
+
+export const triggerReducer = (type, extra = {}) => ({
+  type,
+  ...extra,
+});

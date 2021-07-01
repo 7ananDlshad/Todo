@@ -1,18 +1,19 @@
-import { createStore, applyMiddleware, combineReducers } from 'redux';
-import thunk from 'redux-thunk';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { ListTodosReducer, addTodo } from './reducers/ListTodosReducer';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import { ListTodosReducer } from './reducers/ListTodosReducer';
+import thunk from 'redux-thunk';
 
+const middilware = [thunk];
 const intialState = {};
-const middleware = [thunk];
+
 const Reducers = combineReducers({
-  listTodos: ListTodosReducer,
+  Todos: ListTodosReducer,
+  add: addTodo,
 });
 
 const Store = createStore(
   Reducers,
   intialState,
-  composeWithDevTools(applyMiddleware(...middleware))
+  composeWithDevTools(applyMiddleware(...middilware))
 );
-
 export default Store;
