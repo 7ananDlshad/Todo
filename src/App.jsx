@@ -1,25 +1,31 @@
 import React, { Component } from 'react';
 import 'antd/dist/antd.css';
+import { connect } from 'react-redux';
 import Header from './components/Header';
 import TodoList from './components/TodoList';
+import { listTodos, addTodo } from './actions/getTodos';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      todos: [],
+      todos: localStorage.getItem('todoList')
+        ? JSON.parse(localStorage.getItem('todoList'))
+        : [],
     };
     this.handleForm = (values) => {
       const { todos } = this.state;
+      const finalResult = [
+        {
+          id: Math.floor(Math.random() * (1000 - 1 + 1)) + 1,
+          isChecked: false,
+          ...values,
+        },
+        ...todos,
+      ];
+      this.props.addTodo(finalResult);
       this.setState({
-        todos: [
-          {
-            id: Math.floor(Math.random() * (1000 - 1 + 1)) + 1,
-            isChecked: false,
-            ...values,
-          },
-          ...todos,
-        ],
+        todos: finalResult,
       });
     };
 
@@ -39,6 +45,16 @@ class App extends Component {
       todos.splice(index, 1);
       this.setState({ todos });
     };
+    this.componentDidMount = () => {
+      const { todos } = this.state;
+      localStorage.setItem('todoList', JSON.stringify(todos));
+    };
+    this.componentDidUpdate = () => {
+      const { todos } = this.state;
+      localStorage.setItem('todoList', JSON.stringify(todos));
+    };
+    const { todos } = this.state;
+    this.props.listTodos(todos);
   }
 
   render() {
@@ -63,4 +79,15 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    todos: state,
+  };
+};
+
+const mapDispatchToProsp = {
+  listTodos,
+  addTodo,
+};
+
+export default connect(mapStateToProps, mapDispatchToProsp)(App);
