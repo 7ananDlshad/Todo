@@ -8,56 +8,34 @@ import { listTodos, addTodo } from './actions/getTodos';
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      todos: localStorage.getItem('todoList')
-        ? JSON.parse(localStorage.getItem('todoList'))
-        : [],
-    };
     this.handleForm = (values) => {
-      const { todos } = this.state;
-      const finalResult = [
-        {
-          id: Math.floor(Math.random() * (1000 - 1 + 1)) + 1,
-          isChecked: false,
-          ...values,
-        },
-        ...todos,
-      ];
-      this.props.addTodo(finalResult);
-      this.setState({
-        todos: finalResult,
-      });
+      const { todos } = this.props;
+      const newData = {
+        id: Math.floor(Math.random() * (1000 - 1 + 1)) + 1,
+        isChecked: false,
+        ...values,
+      };
+
+      this.props.addTodo(newData);
     };
     this.handelUpdate = (item) => {
-      const { todos } = this.state;
+      const { todos } = this.props;
       const lastResult = [...todos].map((obj) => {
         if (obj.id === item.id) {
           return item;
         }
         return obj;
       });
-      this.setState({ todos: lastResult });
     };
 
     this.handleDeleteSetstate = (index) => {
-      const { todos } = this.state;
+      const { todos } = this.props;
       todos.splice(index, 1);
-      this.setState({ todos });
     };
-    this.componentDidMount = () => {
-      const { todos } = this.state;
-      localStorage.setItem('todoList', JSON.stringify(todos));
-    };
-    this.componentDidUpdate = () => {
-      const { todos } = this.state;
-      localStorage.setItem('todoList', JSON.stringify(todos));
-    };
-    const { todos } = this.state;
-    this.props.listTodos(todos);
   }
 
   render() {
-    const { todos } = this.state;
+    const { todos } = this.props;
     return (
       <div style={{ margin: '5px 100px 0' }}>
         <Header handleForm={this.handleForm} />
@@ -80,7 +58,7 @@ class App extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    todos: state,
+    todos: state.Todos,
   };
 };
 

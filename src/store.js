@@ -1,5 +1,5 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
-import { ListTodosReducer, addTodo } from './reducers/ListTodosReducer';
+import { ListTodosReducer } from './reducers/ListTodosReducer';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 
@@ -8,7 +8,6 @@ const intialState = {};
 
 const Reducers = combineReducers({
   Todos: ListTodosReducer,
-  add: addTodo,
 });
 
 const Store = createStore(
