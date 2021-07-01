@@ -28,7 +28,6 @@ class App extends Component {
         todos: finalResult,
       });
     };
-
     this.handelUpdate = (item) => {
       const { todos } = this.state;
       const lastResult = [...todos].map((obj) => {
