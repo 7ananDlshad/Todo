@@ -1,17 +1,15 @@
 import React, { Component } from 'react';
-import {
-  Modal, Form, Input, Button,
-} from 'antd';
+import { Modal, Form, Input, Button } from 'antd';
+import { connect } from 'react-redux';
+import { deleteTodo, handleUpdate } from '../actions/getTodos';
 
 class FormModal extends Component {
   constructor(props) {
     super(props);
 
     this.onFinish = (values) => {
-      const {
-        handelUpdate, handleCancel,
-      } = this.props;
-      handelUpdate(values);
+      const { handleUpdate, handleCancel } = this.props;
+      handleUpdate(values);
       handleCancel();
     };
     this.ref = React.createRef();
@@ -69,5 +67,13 @@ class FormModal extends Component {
     );
   }
 }
+const mapStateToProps = (state) => {
+  return {
+    todos: state.Todos,
+  };
+};
+const mapDispatchToProsp = {
+  handleUpdate,
+};
 
-export default FormModal;
+export default connect(mapStateToProps, mapDispatchToProsp)(FormModal);
