@@ -3,7 +3,6 @@ import 'antd/dist/antd.css';
 import { connect } from 'react-redux';
 import Header from './components/Header';
 import TodoList from './components/TodoList';
-import { listTodos, addTodo } from './actions/getTodos';
 
 class App extends Component {
   render() {
@@ -29,10 +28,5 @@ const mapStateToProps = (state) => {
     todos: state.Todos,
   };
 };
-//do i need below func.?
-const mapDispatchToProsp = {
-  listTodos,
-  addTodo,
-};
 
-export default connect(mapStateToProps, mapDispatchToProsp)(App);
+export default connect(mapStateToProps)(App);

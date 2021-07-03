@@ -37,7 +37,7 @@ class TodoList extends Component {
   render() {
     const { todos, deleteTodo } = this.props;
     const { isModalVisible, item } = this.state;
-    console.log(todos);
+    console.log('todo list --> ', todos);
     return (
       <List
         header="ToDo List"
