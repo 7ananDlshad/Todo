@@ -8,16 +8,17 @@ import { listTodos, addTodo } from './actions/getTodos';
 class App extends Component {
   constructor(props) {
     super(props);
-    this.handleForm = (values) => {
-      const { todos } = this.props;
-      const newData = {
-        id: Math.floor(Math.random() * (1000 - 1 + 1)) + 1,
-        isChecked: false,
-        ...values,
-      };
+    // this.handleForm = (values) => {
+    //   const { todos } = this.props;
+    //   const newData = {
+    //     id: Math.floor(Math.random() * (1000 - 1 + 1)) + 1,
+    //     isChecked: false,
+    //     ...values,
+    //   };
 
-      this.props.addTodo(newData);
-    };
+    //   this.props.addTodo(newData);
+    // };
+
     this.handelUpdate = (item) => {
       const { todos } = this.props;
       const lastResult = [...todos].map((obj) => {
@@ -38,7 +39,7 @@ class App extends Component {
     const { todos } = this.props;
     return (
       <div style={{ margin: '5px 100px 0' }}>
-        <Header handleForm={this.handleForm} />
+        <Header />
 
         {todos.length === 0 ? (
           <h1 align="center" style={{ paddingTop: '250px' }}>

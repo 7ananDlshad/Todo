@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import {
-  Modal, Button, Form, Input,
-} from 'antd';
+import { Modal, Button, Form, Input } from 'antd';
+import { connect } from 'react-redux';
+import { addTodo } from '../actions/getTodos';
 
 class Header extends Component {
   constructor(props) {
@@ -19,8 +19,13 @@ class Header extends Component {
     };
 
     this.onFinish = (values) => {
-      const { handleForm } = this.props;
-      handleForm(values);
+      const newData = {
+        id: Math.floor(Math.random() * (1000 - 1 + 1)) + 1,
+        isChecked: false,
+        ...values,
+      };
+
+      this.props.addTodo(newData);
       this.reference.current.resetFields();
       this.setState({ isModalVisible: false });
     };
@@ -74,5 +79,15 @@ class Header extends Component {
     );
   }
 }
+//do i need below function?
+const mapStateToProps = (state) => {
+  return {
+    todos: state.Todos,
+  };
+};
 
-export default Header;
+const mapDispatchToProsp = {
+  addTodo,
+};
+
+export default connect(mapStateToProps, mapDispatchToProsp)(Header);
