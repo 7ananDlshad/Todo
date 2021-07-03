@@ -6,19 +6,6 @@ import TodoList from './components/TodoList';
 import { listTodos, addTodo } from './actions/getTodos';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.handelUpdate = (item) => {
-      const { todos } = this.props;
-      const lastResult = [...todos].map((obj) => {
-        if (obj.id === item.id) {
-          return item;
-        }
-        return obj;
-      });
-    };
-  }
-
   render() {
     const { todos } = this.props;
     return (
@@ -30,7 +17,7 @@ class App extends Component {
             There is no task to do :(
           </h1>
         ) : (
-          <TodoList handelUpdate={this.handelUpdate} />
+          <TodoList />
         )}
       </div>
     );
@@ -42,7 +29,7 @@ const mapStateToProps = (state) => {
     todos: state.Todos,
   };
 };
-
+//do i need below func.?
 const mapDispatchToProsp = {
   listTodos,
   addTodo,

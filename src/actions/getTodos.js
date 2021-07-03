@@ -16,3 +16,15 @@ export const deleteTodo = (index) => (dispatch, getState) => {
   console.log('should be one item deletes-->', Todos);
   dispatch(triggerReducer(TODO_LIST, { data: Todos }));
 };
+
+export const handleUpdate = (item) => (dispatch, getState) => {
+  const { Todos } = getState();
+  const lastResult = [...Todos].map((obj) => {
+    if (obj.id === item.id) {
+      return item;
+    }
+    return obj;
+  });
+  console.log('should be updated -->', Todos);
+  dispatch(triggerReducer(TODO_LIST, { data: lastResult }));
+};

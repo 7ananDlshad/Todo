@@ -3,7 +3,7 @@ import { List, Popconfirm } from 'antd';
 import { DeleteFilled, CheckCircleFilled, EditFilled } from '@ant-design/icons';
 import FormModal from './FormModal';
 import { connect } from 'react-redux';
-import { deleteTodo } from '../actions/getTodos';
+import { deleteTodo, handleUpdate } from '../actions/getTodos';
 
 class TodoList extends Component {
   constructor(props) {
@@ -14,12 +14,12 @@ class TodoList extends Component {
     };
 
     this.handleComplete = (item) => {
-      const { handelUpdate } = this.props;
+      const { handleUpdate } = this.props;
       const newItem = {
         ...item,
         isChecked: !item.isChecked,
       };
-      handelUpdate(newItem);
+      handleUpdate(newItem);
       this.setState({
         item: newItem,
       });
@@ -35,7 +35,7 @@ class TodoList extends Component {
   }
 
   render() {
-    const { todos, handelUpdate, deleteTodo } = this.props;
+    const { todos, deleteTodo } = this.props;
     const { isModalVisible, item } = this.state;
     console.log(todos);
     return (
@@ -74,7 +74,6 @@ class TodoList extends Component {
               isModalVisible={isModalVisible}
               handleCancel={this.handleCancel}
               item={item}
-              handelUpdate={handelUpdate}
             />
             <Popconfirm
               title={`Are you sure delete ${item1.title} task ?`}
@@ -101,9 +100,9 @@ const mapStateToProps = (state) => {
     todos: state.Todos,
   };
 };
-//do i need below function?
 const mapDispatchToProsp = {
   deleteTodo,
+  handleUpdate,
 };
 
 export default connect(mapStateToProps, mapDispatchToProsp)(TodoList);
