@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { List, Popconfirm } from 'antd';
 import { DeleteFilled, CheckCircleFilled, EditFilled } from '@ant-design/icons';
 import FormModal from './FormModal';
+import { connect } from 'react-redux';
+import { deleteTodo } from '../actions/getTodos';
 
 class TodoList extends Component {
   constructor(props) {
@@ -9,11 +11,6 @@ class TodoList extends Component {
     this.state = {
       item: {},
       isModalVisible: false,
-    };
-
-    this.handleDelete = (index) => {
-      const { handleDeleteSetstate } = this.props;
-      handleDeleteSetstate(index);
     };
 
     this.handleComplete = (item) => {
@@ -38,8 +35,9 @@ class TodoList extends Component {
   }
 
   render() {
-    const { todos, handelUpdate } = this.props;
+    const { todos, handelUpdate, deleteTodo } = this.props;
     const { isModalVisible, item } = this.state;
+    console.log(todos);
     return (
       <List
         header="ToDo List"
@@ -80,7 +78,11 @@ class TodoList extends Component {
             />
             <Popconfirm
               title={`Are you sure delete ${item1.title} task ?`}
-              onConfirm={() => this.handleDelete(index)}
+              //delete function is not real time
+              onConfirm={() => {
+                deleteTodo(index);
+                console.log('deleted');
+              }}
               okText="Yes"
               cancelText="No"
               placement="bottom"
@@ -94,4 +96,14 @@ class TodoList extends Component {
   }
 }
 
-export default TodoList;
+const mapStateToProps = (state) => {
+  return {
+    todos: state.Todos,
+  };
+};
+//do i need below function?
+const mapDispatchToProsp = {
+  deleteTodo,
+};
+
+export default connect(mapStateToProps, mapDispatchToProsp)(TodoList);

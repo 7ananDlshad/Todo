@@ -8,17 +8,6 @@ import { listTodos, addTodo } from './actions/getTodos';
 class App extends Component {
   constructor(props) {
     super(props);
-    // this.handleForm = (values) => {
-    //   const { todos } = this.props;
-    //   const newData = {
-    //     id: Math.floor(Math.random() * (1000 - 1 + 1)) + 1,
-    //     isChecked: false,
-    //     ...values,
-    //   };
-
-    //   this.props.addTodo(newData);
-    // };
-
     this.handelUpdate = (item) => {
       const { todos } = this.props;
       const lastResult = [...todos].map((obj) => {
@@ -27,11 +16,6 @@ class App extends Component {
         }
         return obj;
       });
-    };
-
-    this.handleDeleteSetstate = (index) => {
-      const { todos } = this.props;
-      todos.splice(index, 1);
     };
   }
 
@@ -46,11 +30,7 @@ class App extends Component {
             There is no task to do :(
           </h1>
         ) : (
-          <TodoList
-            todos={todos}
-            handelUpdate={this.handelUpdate}
-            handleDeleteSetstate={this.handleDeleteSetstate}
-          />
+          <TodoList handelUpdate={this.handelUpdate} />
         )}
       </div>
     );
