@@ -4,7 +4,6 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 
 const middilware = [thunk];
-const intialState = {};
 
 const Reducers = combineReducers({
   Todos: ListTodosReducer,
