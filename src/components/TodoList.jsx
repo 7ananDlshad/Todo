@@ -76,7 +76,6 @@ class TodoList extends Component {
             />
             <Popconfirm
               title={`Are you sure delete ${item1.title} task ?`}
-              //delete function is not real time
               onConfirm={() => {
                 deleteTodo(index);
               }}

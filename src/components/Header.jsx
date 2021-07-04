@@ -79,15 +79,9 @@ class Header extends Component {
     );
   }
 }
-//do i need below function?
-const mapStateToProps = (state) => {
-  return {
-    todos: state.Todos,
-  };
-};
 
 const mapDispatchToProsp = {
   addTodo,
 };
 
-export default connect(mapStateToProps, mapDispatchToProsp)(Header);
+export default connect(null, mapDispatchToProsp)(Header);

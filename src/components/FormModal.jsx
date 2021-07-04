@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Modal, Form, Input, Button } from 'antd';
 import { connect } from 'react-redux';
-import { deleteTodo, handleUpdate } from '../actions/getTodos';
+import { handleUpdate } from '../actions/getTodos';
 
 class FormModal extends Component {
   constructor(props) {
