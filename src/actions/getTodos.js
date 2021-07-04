@@ -13,8 +13,7 @@ export const addTodo = (data) => (dispatch, getState) => {
 export const deleteTodo = (index) => (dispatch, getState) => {
   const { Todos } = getState();
   Todos.splice(index, 1);
-  console.log('should be one item deletes-->', Todos);
-  dispatch(triggerReducer(TODO_LIST, { data: Todos }));
+  dispatch(triggerReducer(TODO_LIST, { data: [...Todos] }));
 };
 
 export const handleUpdate = (item) => (dispatch, getState) => {
@@ -25,6 +24,5 @@ export const handleUpdate = (item) => (dispatch, getState) => {
     }
     return obj;
   });
-  console.log('should be updated -->', Todos);
   dispatch(triggerReducer(TODO_LIST, { data: lastResult }));
 };

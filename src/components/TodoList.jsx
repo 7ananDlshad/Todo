@@ -37,7 +37,6 @@ class TodoList extends Component {
   render() {
     const { todos, deleteTodo } = this.props;
     const { isModalVisible, item } = this.state;
-    console.log('todo list --> ', todos);
     return (
       <List
         header="ToDo List"
@@ -80,7 +79,6 @@ class TodoList extends Component {
               //delete function is not real time
               onConfirm={() => {
                 deleteTodo(index);
-                console.log('deleted');
               }}
               okText="Yes"
               cancelText="No"
